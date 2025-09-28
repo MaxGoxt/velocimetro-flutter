@@ -9,7 +9,7 @@ O app foi pensado para motoristas, ciclistas e até para caminhadas, fornecendo 
 ```
 • Flutter 3.35.3 Framework
 • Dart 3.9.2
-```git a
+```
 
 ---
 
