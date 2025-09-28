@@ -131,7 +131,7 @@ class _HomeViewState extends State<HomeView> {
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: InfoCard(
                           title: 'Tempo',
-                          value: '${ViagemViewModel.duracaoViagem}',
+                          value: _formatarDuracao(ViagemViewModel.duracaoViagem),
                           icon: Icons.timer,
                           color: Colors.blue.shade400,
                           fullWidth: true,
@@ -210,5 +210,14 @@ class _HomeViewState extends State<HomeView> {
         },
       ),
     );
+  }
+
+  // Função utilitária para formatar o tempo da viagem como hh:mm:ss
+  String _formatarDuracao(Duration duration) {
+    String doisDigitos(int n) => n.toString().padLeft(2, '0');
+    String horas = doisDigitos(duration.inHours);
+    String minutos = doisDigitos(duration.inMinutes.remainder(60));
+    String segundos = doisDigitos(duration.inSeconds.remainder(60));
+    return '$horas:$minutos:$segundos';
   }
 }
