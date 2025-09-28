@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:velocimetro_flutter/modules/hodometro/viewmodels/viagem_viewmodel.dart';
 import 'package:velocimetro_flutter/modules/hud/view/hud_view.dart';
+import 'package:velocimetro_flutter/utils/formatarDuracao.dart';
 import 'package:velocimetro_flutter/widgets/action_button.dart';
 import 'package:velocimetro_flutter/widgets/info_card.dart';
 import 'package:velocimetro_flutter/widgets/velocimetro_widget.dart';
@@ -131,7 +132,7 @@ class _HomeViewState extends State<HomeView> {
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: InfoCard(
                           title: 'Tempo',
-                          value: _formatarDuracao(ViagemViewModel.duracaoViagem),
+                          value: formatarDuracao(ViagemViewModel.duracaoViagem),
                           icon: Icons.timer,
                           color: Colors.blue.shade400,
                           fullWidth: true,
@@ -210,14 +211,5 @@ class _HomeViewState extends State<HomeView> {
         },
       ),
     );
-  }
-
-  // Função utilitária para formatar o tempo da viagem como hh:mm:ss
-  String _formatarDuracao(Duration duration) {
-    String doisDigitos(int n) => n.toString().padLeft(2, '0');
-    String horas = doisDigitos(duration.inHours);
-    String minutos = doisDigitos(duration.inMinutes.remainder(60));
-    String segundos = doisDigitos(duration.inSeconds.remainder(60));
-    return '$horas:$minutos:$segundos';
   }
 }

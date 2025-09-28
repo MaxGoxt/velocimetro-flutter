@@ -8,6 +8,7 @@ class InfoCard extends StatefulWidget {
   final IconData icon;
   final Color color;
   final bool fullWidth;
+  final bool dark;
 
   const InfoCard({
     super.key,
@@ -16,12 +17,12 @@ class InfoCard extends StatefulWidget {
     required this.icon,
     required this.color,
     this.fullWidth = false,
+    this.dark = false,
   });
 
   @override
   State<InfoCard> createState() => _InfoCardState();
 }
-
 
 class _InfoCardState extends State<InfoCard> {
   @override
@@ -31,7 +32,9 @@ class _InfoCardState extends State<InfoCard> {
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 0, 0, 0),
+          color: (widget.dark
+              ? Color.fromARGB(255, 0, 0, 0)
+              : Color.fromARGB(255, 255, 255, 255)),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -43,8 +46,10 @@ class _InfoCardState extends State<InfoCard> {
                 const SizedBox(width: 8),
                 Text(
                   widget.title,
-                  style: const TextStyle(
-                    color: Color.fromARGB(179, 255, 255, 255),
+                  style: TextStyle(
+                    color: widget.dark
+                        ? Color.fromARGB(255, 255, 255, 255)
+                        : Color.fromARGB(255, 0, 0, 0),
                     fontSize: 14,
                   ),
                 ),
@@ -53,8 +58,10 @@ class _InfoCardState extends State<InfoCard> {
             const SizedBox(height: 8),
             Text(
               widget.value,
-              style: const TextStyle(
-                color: Color.fromARGB(255, 255, 255, 255),
+              style: TextStyle(
+                color: widget.dark
+                    ? Color.fromARGB(255, 255, 255, 255)
+                    : Color.fromARGB(255, 0, 0, 0),
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
