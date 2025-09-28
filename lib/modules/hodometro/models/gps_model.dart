@@ -1,7 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 import 'dart:async';
 
-class GPSController {
+class GPSModel {
   final _locationStreamController = StreamController<Position>.broadcast();
   Stream<Position> get locationStream => _locationStreamController.stream;
 

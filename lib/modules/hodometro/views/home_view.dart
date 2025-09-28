@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:velocimetro_flutter/controllers/gps_controller.dart';
+import 'package:velocimetro_flutter/modules/hodometro/models/gps_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final GPSController _gpsController = GPSController();
+  final GPSModel _gps = GPSModel();
   double _speed = 0.0;
   double _distance = 0.0;
   String _lastUpdate = "Sem dados";
@@ -24,11 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _startGPS() async {
     try {
-      await _gpsController.start();
-      _gpsController.locationStream.listen((Position position) {
+      await _gps.start();
+      _gps.locationStream.listen((Position position) {
         setState(() {
           _speed = position.speed * 3.6; // m/s → km/h
-          _distance = _gpsController.totalDistance;
+          _distance = _gps.totalDistance;
           _lastUpdate = DateFormat("HH:mm:ss").format(DateTime.now());
         });
       });
@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    _gpsController.dispose();
+    _gps.dispose();
     super.dispose();
   }
 
