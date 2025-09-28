@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:velocimetro_flutter/modules/hodometro/viewmodels/viagem_viewmodel.dart';
-import 'modules/hodometro/views/home_screen.dart';
+import 'modules/hodometro/views/home_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             elevation: 0,
           ),
         ),
-        home: const HomeScreen(),
+        home: const HomeView(),
       ),
     );
   }
